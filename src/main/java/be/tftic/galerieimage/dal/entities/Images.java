@@ -1,5 +1,6 @@
 package be.tftic.galerieimage.dal.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -19,7 +20,6 @@ public class Images {
 
     private byte delete;
 
-    @Lob
     private String description;
 
     private int like;
@@ -29,8 +29,9 @@ public class Images {
     private String src;
 
     //bi-directional many-to-one association to Utilisateur
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="Utilisateurs_ID")
+    @JsonBackReference
     private Utilisateurs utilisateur;
 
     //bi-directional many-to-many association to Category
@@ -44,9 +45,11 @@ public class Images {
             @JoinColumn(name="Categories_ID")
     }
     )
+    @JsonBackReference
     private List<Categories> categories;
 
     //bi-directional many-to-many association to Motscle
     @ManyToMany(mappedBy="images")
+    @JsonBackReference
     private List<MotsCles> motscles;
 }

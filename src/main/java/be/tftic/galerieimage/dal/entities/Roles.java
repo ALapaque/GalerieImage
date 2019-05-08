@@ -31,9 +31,11 @@ public class Roles {
             @JoinColumn(name="Permissions_ID")
     }
     )
+    @JsonBackReference
     private List<Permissions> permissions;
 
     //bi-directional many-to-one association to Utilisateur
     @OneToMany(mappedBy="role")
+    @JsonBackReference
     private List<Utilisateurs> utilisateurs;
 }

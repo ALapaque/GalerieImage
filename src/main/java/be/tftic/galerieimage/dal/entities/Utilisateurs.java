@@ -1,9 +1,6 @@
 package be.tftic.galerieimage.dal.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
@@ -30,12 +27,15 @@ public class Utilisateurs {
 
     private String username;
 
+
     //bi-directional many-to-one association to Image
     @OneToMany(mappedBy="utilisateur")
+    @JsonManagedReference
     private List<Images> images;
 
     //bi-directional many-to-one association to Role
     @ManyToOne
     @JoinColumn(name="Roles_ID")
+    @JsonManagedReference
     private Roles role;
 }
