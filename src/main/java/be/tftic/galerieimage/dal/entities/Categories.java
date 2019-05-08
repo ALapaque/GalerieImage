@@ -21,10 +21,10 @@ public class Categories {
 
 
     //bi-directional many-to-many association to Motscle
-    @ManyToMany(mappedBy="categories", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy="categories")
     private List<MotsCles> motscles;
 
     //bi-directional many-to-many association to Image
-    @ManyToMany(mappedBy="categories", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy="categories")
     private List<Images> images;
 }

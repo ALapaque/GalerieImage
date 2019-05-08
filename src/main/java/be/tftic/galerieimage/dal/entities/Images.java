@@ -29,7 +29,7 @@ public class Images {
     private String src;
 
     //bi-directional many-to-one association to Utilisateur
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="Utilisateurs_ID")
     @JsonBackReference
     private Utilisateurs utilisateur;
