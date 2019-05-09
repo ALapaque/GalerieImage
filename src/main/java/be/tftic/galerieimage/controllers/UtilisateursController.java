@@ -1,6 +1,6 @@
 package be.tftic.galerieimage.controllers;
 
-import be.tftic.galerieimage.dal.entities.Utilisateurs;
+import be.tftic.galerieimage.dal.entities.UtilisateursEntity;
 import be.tftic.galerieimage.dal.services.UtilisateursService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,15 +21,15 @@ public class UtilisateursController {
     private UtilisateursService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Utilisateurs>> getAll(){
+    public ResponseEntity<List<UtilisateursEntity>> getAll(){
 
-        return new ResponseEntity<List<Utilisateurs>>((List<Utilisateurs>) service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<UtilisateursEntity>>((List<UtilisateursEntity>) service.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Utilisateurs>> getById(@PathVariable("id") int id){
+    public ResponseEntity<Optional<UtilisateursEntity>> getById(@PathVariable("id") int id){
 
-        return new ResponseEntity<Optional<Utilisateurs>>(service.getById(id), HttpStatus.OK);
+        return new ResponseEntity<Optional<UtilisateursEntity>>(service.getById(id), HttpStatus.OK);
     }
 
 }

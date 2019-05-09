@@ -1,6 +1,6 @@
 package be.tftic.galerieimage.dal.services;
 
-import be.tftic.galerieimage.dal.entities.Roles;
+import be.tftic.galerieimage.dal.entities.RolesEntity;
 import be.tftic.galerieimage.dal.repositories.RolesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,29 +8,29 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class RolesService implements CrudService<Roles, Integer> {
+public class RolesService implements CrudService<RolesEntity, Integer> {
 
     @Autowired
     private RolesRepository repo;
 
 
     @Override
-    public Iterable<? extends Roles> getAll() {
+    public Iterable<? extends RolesEntity> getAll() {
         return repo.findAll();
     }
 
     @Override
-    public Optional<Roles> getById(Integer id) {
+    public Optional<RolesEntity> getById(Integer id) {
         return repo.findById(id);
     }
 
     @Override
-    public Roles create(Roles entity) {
+    public RolesEntity create(RolesEntity entity) {
         return null;
     }
 
     @Override
-    public Roles update(Roles entity, Integer integer) throws Exception {
+    public RolesEntity update(RolesEntity entity, Integer integer) throws Exception {
         return null;
     }
 

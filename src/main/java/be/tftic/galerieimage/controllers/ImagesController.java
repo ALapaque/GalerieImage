@@ -1,6 +1,6 @@
 package be.tftic.galerieimage.controllers;
 
-import be.tftic.galerieimage.dal.entities.Images;
+import be.tftic.galerieimage.dal.entities.ImagesEntity;
 import be.tftic.galerieimage.dal.services.ImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,14 +21,14 @@ public class ImagesController {
     private ImagesService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Images>> getAll(){
+    public ResponseEntity<List<ImagesEntity>> getAll(){
 
-        return new ResponseEntity<List<Images>>((List<Images>) service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<ImagesEntity>>((List<ImagesEntity>) service.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Images>> getById(@PathVariable("id") int id){
+    public ResponseEntity<Optional<ImagesEntity>> getById(@PathVariable("id") int id){
 
-        return new ResponseEntity<Optional<Images>>(service.getById(id), HttpStatus.OK);
+        return new ResponseEntity<Optional<ImagesEntity>>(service.getById(id), HttpStatus.OK);
     }
 }

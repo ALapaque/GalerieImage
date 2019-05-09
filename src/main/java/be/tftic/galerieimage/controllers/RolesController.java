@@ -1,6 +1,6 @@
 package be.tftic.galerieimage.controllers;
 
-import be.tftic.galerieimage.dal.entities.Roles;
+import be.tftic.galerieimage.dal.entities.RolesEntity;
 import be.tftic.galerieimage.dal.services.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,14 +21,14 @@ public class RolesController {
     private RolesService service;
 
     @GetMapping("")
-    public ResponseEntity<List<Roles>> getAll(){
+    public ResponseEntity<List<RolesEntity>> getAll(){
 
-        return new ResponseEntity<List<Roles>>((List<Roles>) service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<RolesEntity>>((List<RolesEntity>) service.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Roles>> getById(@PathVariable("id") int id){
+    public ResponseEntity<Optional<RolesEntity>> getById(@PathVariable("id") int id){
 
-        return new ResponseEntity<Optional<Roles>>(service.getById(id), HttpStatus.OK);
+        return new ResponseEntity<Optional<RolesEntity>>(service.getById(id), HttpStatus.OK);
     }
 }
