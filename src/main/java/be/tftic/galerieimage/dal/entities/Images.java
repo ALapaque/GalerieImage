@@ -1,13 +1,13 @@
 package be.tftic.galerieimage.dal.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "images")
@@ -28,28 +28,18 @@ public class Images {
 
     private String src;
 
-    //bi-directional many-to-one association to Utilisateur
     @ManyToOne
     @JoinColumn(name="Utilisateurs_ID")
-    @JsonBackReference
     private Utilisateurs utilisateur;
 
-    //bi-directional many-to-many association to Category
-    @ManyToMany
-    @JoinTable(
-            name="images_has_categories"
-            , joinColumns={
-            @JoinColumn(name="Images_ID")
-    }
-            , inverseJoinColumns={
-            @JoinColumn(name="Categories_ID")
-    }
-    )
-    @JsonBackReference
-    private List<Categories> categories;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "images_has_categories",
+        joinColumns = @JoinColumn(name = "Images_ID", referencedColumnName = "ID"),
+        inverseJoinColumns = @JoinColumn(name = "Categories_ID", referencedColumnName = "ID"))
+    private Set<Categories> categories;
 
-    //bi-directional many-to-many association to Motscle
-    @ManyToMany(mappedBy="images")
-    @JsonBackReference
-    private List<MotsCles> motscles;
+
+    @ManyToMany(mappedBy = "images")
+    private Set<MotsCles> motsCles = new HashSet<>();
+
 }

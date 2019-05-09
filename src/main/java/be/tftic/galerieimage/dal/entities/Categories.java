@@ -1,12 +1,12 @@
 package be.tftic.galerieimage.dal.entities;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "categories")
@@ -19,12 +19,11 @@ public class Categories {
 
     private String nom;
 
+    @ManyToMany(mappedBy = "categories")
+    private Set<MotsCles> motscles = new HashSet<>();
 
-    //bi-directional many-to-many association to Motscle
-    @ManyToMany(mappedBy="categories")
-    private List<MotsCles> motscles;
+    @ManyToMany(mappedBy = "categories")
+    private Set<Images> images = new HashSet<>();
 
-    //bi-directional many-to-many association to Image
-    @ManyToMany(mappedBy="categories")
-    private List<Images> images;
+
 }

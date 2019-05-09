@@ -1,13 +1,11 @@
 package be.tftic.galerieimage.dal.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "motscles")
@@ -20,29 +18,16 @@ public class MotsCles {
 
     private String nom;
 
-    //bi-directional many-to-many association to Category
-    @ManyToMany
-    @JoinTable(
-            name="categories_has_motscles"
-            , joinColumns={
-            @JoinColumn(name="MotsCles_ID")
-    }
-            , inverseJoinColumns={
-            @JoinColumn(name="Categories_ID")
-    }
-    )
-    private List<Categories> categories;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "categories_has_motscles",
+            joinColumns = @JoinColumn(name = "MotsCles_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "Categories_ID", referencedColumnName = "ID")    )
+    private Set<Categories> categories;
 
-    //bi-directional many-to-many association to Image
-    @ManyToMany
-    @JoinTable(
-            name="images_has_motscles"
-            , joinColumns={
-            @JoinColumn(name="MotsCles_ID")
-    }
-            , inverseJoinColumns={
-            @JoinColumn(name="Images_ID")
-    }
-    )
-    private List<Images> images;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "images_has_motscles",
+            joinColumns = @JoinColumn(name = "MotsCles_ID", referencedColumnName = "ID"),
+            inverseJoinColumns = @JoinColumn(name = "Images_ID", referencedColumnName = "ID"))
+    private Set<Images> images;
+
 }

@@ -4,11 +4,15 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
 @Table(name = "utilisateurs")
 @Data
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Utilisateurs {
 
     @Id
@@ -27,15 +31,12 @@ public class Utilisateurs {
 
     private String username;
 
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
+    private Set<Images> images;
 
-    //bi-directional many-to-one association to Image
-    @OneToMany(mappedBy="utilisateur")
-    @JsonManagedReference
-    private List<Images> images;
-
-    //bi-directional many-to-one association to Role
     @ManyToOne
-    @JoinColumn(name="Roles_ID")
-    @JsonManagedReference
+    @JoinColumn(name = "Roles_ID")
     private Roles role;
+
+
 }
