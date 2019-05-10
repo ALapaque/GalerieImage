@@ -1,7 +1,8 @@
 package be.tftic.galerieimage.controllers;
 
-import be.tftic.galerieimage.dal.entities.RolesEntity;
-import be.tftic.galerieimage.dal.services.RolesService;
+import be.tftic.galerieimage.dal.entitites.Image;
+import be.tftic.galerieimage.dal.entitites.Motscle;
+import be.tftic.galerieimage.dal.services.MotscleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,21 +15,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/role")
-public class RolesController {
+@RequestMapping("/motscle")
+public class MotscleController {
 
     @Autowired
-    private RolesService service;
+    private MotscleService service;
 
     @GetMapping("")
-    public ResponseEntity<List<RolesEntity>> getAll(){
+    public ResponseEntity<List<Motscle>> getAll(){
 
-        return new ResponseEntity<List<RolesEntity>>((List<RolesEntity>) service.getAll(), HttpStatus.OK);
+        return new ResponseEntity<List<Motscle>>((List<Motscle>) service.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<RolesEntity>> getById(@PathVariable("id") int id){
+    public ResponseEntity<Optional<Motscle>> getById(@PathVariable("id") int id){
 
-        return new ResponseEntity<Optional<RolesEntity>>(service.getById(id), HttpStatus.OK);
+        return new ResponseEntity<Optional<Motscle>>(service.getById(id), HttpStatus.OK);
     }
 }

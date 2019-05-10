@@ -1,14 +1,12 @@
 package be.tftic.galerieimage.dal.entitites;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.springframework.lang.Nullable;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -43,8 +41,19 @@ public class Image implements  Serializable{
 	private String src;
 
 	@OneToMany(mappedBy = "image", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<ImagesHasCategories> image = new ArrayList<ImagesHasCategories>();
+	@JsonIgnoreProperties(ignoreUnknown = true,
+			value = {"image"})
+	private List<ImageHasCategory> category = new ArrayList<ImageHasCategory>();
 
+	@OneToMany(mappedBy = "image", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JsonIgnoreProperties(ignoreUnknown = true,
+			value = {"image", "category"})
+	private List<ImageHasMotscle> motscle = new ArrayList<ImageHasMotscle>();
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_utilisateur")
+	@JsonIgnoreProperties("utilisateur")
+	private Utilisateur utilisateur;
 
 
 }

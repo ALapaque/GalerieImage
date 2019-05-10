@@ -1,5 +1,6 @@
 package be.tftic.galerieimage.dal.entitites;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -28,7 +29,12 @@ public class Category implements Serializable {
 	private String nom;
 
 	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
-	private List<ImagesHasCategories> category = new ArrayList<ImagesHasCategories>();
+	@JsonIgnoreProperties("category")
+	private List<ImageHasCategory> image = new ArrayList<ImageHasCategory>();
+
+	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JsonIgnoreProperties("category")
+	private List<CategoryHasMotscle> motscle = new ArrayList<CategoryHasMotscle>();
 
 
 }

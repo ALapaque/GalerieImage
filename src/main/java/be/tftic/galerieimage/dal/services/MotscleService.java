@@ -1,36 +1,35 @@
 package be.tftic.galerieimage.dal.services;
 
-import be.tftic.galerieimage.dal.entities.RolesEntity;
-import be.tftic.galerieimage.dal.repositories.RolesRepository;
+import be.tftic.galerieimage.dal.entitites.Motscle;
+import be.tftic.galerieimage.dal.repositories.MotscleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class RolesService implements CrudService<RolesEntity, Integer> {
+public class MotscleService implements CrudService<Motscle, Integer> {
 
     @Autowired
-    private RolesRepository repo;
-
+    private MotscleRepository repo;
 
     @Override
-    public Iterable<? extends RolesEntity> getAll() {
+    public Iterable<? extends Motscle> getAll() {
         return repo.findAll();
     }
 
     @Override
-    public Optional<RolesEntity> getById(Integer id) {
+    public Optional<Motscle> getById(Integer id) {
         return repo.findById(id);
     }
 
     @Override
-    public RolesEntity create(RolesEntity entity) {
+    public Motscle create(Motscle entity) {
         return null;
     }
 
     @Override
-    public RolesEntity update(RolesEntity entity, Integer integer) throws Exception {
+    public Motscle update(Motscle entity, Integer integer) throws Exception {
         return null;
     }
 
