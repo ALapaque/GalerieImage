@@ -1,0 +1,3 @@
+INSERT INTO `category` (`id_category`, `nom`) VALUES (1, '#1'), (2, '#2'), (3, '#3');
+INSERT INTO `image` (`id_image`, `aime`, `description`, `is_deleted`, `nom`, `src`) VALUES (1, '123', 'dazdaz', b'0', 'dzavq', '#2'), (2, '1', 'dzaa', b'0', 'dzada', 'dzadaz'), (3, '543', 'fdgdf', b'0', 'gfdgdgr', 'rgrdgr');
+INSERT INTO `images_has_categories` (`id_category`, `id_image`) VALUES ('1', '2'), ('2', '1'), ('3', '1'), ('3', '3');

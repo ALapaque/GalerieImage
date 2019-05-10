@@ -1,6 +1,6 @@
 package be.tftic.galerieimage.dal.services;
 
-import be.tftic.galerieimage.dal.entities.CategoriesEntity;
+import be.tftic.galerieimage.dal.entitites.Category;
 import be.tftic.galerieimage.dal.repositories.CategoriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,29 +8,29 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class CategoriesService implements  CrudService<CategoriesEntity, Integer> {
+public class CategoriesService implements  CrudService<Category, Integer> {
 
     @Autowired
     private CategoriesRepository repo;
 
 
     @Override
-    public Iterable<? extends CategoriesEntity> getAll() {
+    public Iterable<? extends Category> getAll() {
         return repo.findAll();
     }
 
     @Override
-    public Optional<CategoriesEntity> getById(Integer id) {
+    public Optional<Category> getById(Integer id) {
         return repo.findById(id);
     }
 
     @Override
-    public CategoriesEntity create(CategoriesEntity entity) {
+    public Category create(Category entity) {
         return null;
     }
 
     @Override
-    public CategoriesEntity update(CategoriesEntity entity, Integer integer) throws Exception {
+    public Category update(Category entity, Integer integer) throws Exception {
         return null;
     }
 
