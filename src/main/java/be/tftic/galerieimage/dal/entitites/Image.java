@@ -2,6 +2,7 @@ package be.tftic.galerieimage.dal.entitites;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
+import org.springframework.http.HttpStatus;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -25,20 +26,27 @@ public class Image implements  Serializable{
 	@Column(unique=true, nullable=false, name = "id_image")
 	private int id_image;
 
-	@Column(nullable=false)
+	@Column(nullable=false, length=250)
+	private String fileName;
+
+	@Column()
 	private boolean isDeleted;
 
-	@Column(nullable=false, length=250)
+	@Column(length=250)
 	private String description;
 
+	@Column(nullable=false, length=250)
+	private String fileType;
+
 	@Column(nullable=false)
+	private long size;
+
+	@Column()
 	private int aime;
 
 	@Column(nullable=false, length=250)
-	private String nom;
+	private String fileDownloadUri;
 
-	@Column(nullable=false, length=250)
-	private String src;
 
 	@OneToMany(mappedBy = "image", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	@JsonIgnoreProperties(ignoreUnknown = true,
@@ -55,5 +63,15 @@ public class Image implements  Serializable{
 	@JsonIgnoreProperties("utilisateur")
 	private Utilisateur utilisateur;
 
+	public Image(Image image, HttpStatus created) {
+
+	}
+
+	public Image(String fileName, String fileDownloadUri, String fileType, long size) {
+		this.fileName = fileName;
+		this.fileDownloadUri = fileDownloadUri;
+		this.fileType = fileType;
+		this.size = size;
+	}
 
 }
