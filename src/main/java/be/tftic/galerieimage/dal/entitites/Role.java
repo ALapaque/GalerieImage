@@ -3,17 +3,19 @@ package be.tftic.galerieimage.dal.entitites;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jdk.jshell.execution.Util;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name="role")
 @NamedQuery(name="role.findAll", query="SELECT c FROM Role c")
 @Data
-public class Role implements Serializable {
+public class Role implements Serializable, GrantedAuthority {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -32,4 +34,8 @@ public class Role implements Serializable {
     private List<RoleHasPermission> permission = new ArrayList<RoleHasPermission>();
 
 
+    @Override
+    public String getAuthority() {
+        return nom;
+    }
 }

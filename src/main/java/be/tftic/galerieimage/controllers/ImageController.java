@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 public class ImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
