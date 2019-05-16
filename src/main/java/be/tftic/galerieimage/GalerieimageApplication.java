@@ -19,14 +19,4 @@ public class GalerieimageApplication {
         SpringApplication.run(GalerieimageApplication.class, args);
     }
 
-    @Bean
-    public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/uploadFile").allowedOrigins("http://localhost:8081");
-            }
-        };
-    }
-
 }

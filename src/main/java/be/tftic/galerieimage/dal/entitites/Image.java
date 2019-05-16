@@ -14,6 +14,7 @@ import java.util.List;
  * The persistent class for the images database table.
  * 
  */
+
 @Entity
 @Table(name="image")
 @NamedQuery(name="Image.findAll", query="SELECT i FROM Image i")
@@ -29,7 +30,7 @@ public class Image implements  Serializable{
 	@Column(nullable=false, length=250)
 	private String fileName;
 
-	@Column()
+	@Column
 	private boolean isDeleted;
 
 	@Column(length=250)
@@ -41,7 +42,7 @@ public class Image implements  Serializable{
 	@Column(nullable=false)
 	private long size;
 
-	@Column()
+	@Column
 	private int aime;
 
 	@Column(nullable=false, length=250)
@@ -63,6 +64,9 @@ public class Image implements  Serializable{
 	@JsonIgnoreProperties("utilisateur")
 	private Utilisateur utilisateur;
 
+	public Image(){
+
+	}
 	public Image(Image image, HttpStatus created) {
 
 	}
