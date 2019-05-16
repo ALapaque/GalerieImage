@@ -23,6 +23,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
+@CrossOrigin
 public class ImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
@@ -41,7 +42,6 @@ public class ImageController {
 
        Image i = new Image(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
-
 
         return create(i);
 
@@ -85,7 +85,7 @@ public class ImageController {
                 .body(resource);
     }
 
-    @GetMapping("")
+    @GetMapping("/image")
     public ResponseEntity<List<Image>> getAll(){
         return new ResponseEntity<List<Image>>((List<Image>) service.getAll(), HttpStatus.OK);
     }
