@@ -71,11 +71,12 @@ public class Image implements  Serializable{
 
 	}
 
-	public Image(String fileName, String fileDownloadUri, String fileType, long size) {
+	public Image(String fileName, String fileDownloadUri, String fileType, long size, String description) {
 		this.fileName = fileName;
 		this.fileDownloadUri = fileDownloadUri;
 		this.fileType = fileType;
 		this.size = size;
+		this.description = description;
 	}
 
 }

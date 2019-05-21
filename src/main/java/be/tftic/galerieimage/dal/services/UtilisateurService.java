@@ -29,7 +29,7 @@ public class UtilisateurService implements CrudService<Utilisateur, Integer>, Us
 
     @Override
     public Utilisateur create(Utilisateur entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override

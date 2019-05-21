@@ -47,14 +47,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .cors()
             .and()
             .authorizeRequests()
-            .antMatchers("/h2/**").permitAll()
-            .antMatchers("/**").permitAll()
+            .antMatchers("/**").authenticated()
             .and()
             .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-        //Seulement pour h2
-        http.headers().frameOptions().disable();
     }
 
     @Bean

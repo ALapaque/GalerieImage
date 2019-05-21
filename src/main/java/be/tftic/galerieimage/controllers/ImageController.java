@@ -1,7 +1,7 @@
 package be.tftic.galerieimage.controllers;
 
-
 import be.tftic.galerieimage.dal.entitites.Image;
+import be.tftic.galerieimage.dal.entitites.Utilisateur;
 import be.tftic.galerieimage.dal.services.ImagesService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,7 +32,8 @@ public class ImageController {
     private ImagesService service;
 
     @PostMapping("/uploadFile")
-    public Image uploadFile(@RequestParam("file") MultipartFile file) {
+    public Image uploadFile(@RequestParam("file") MultipartFile file, @RequestParam String description) {
+
         String fileName = service.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -41,7 +42,7 @@ public class ImageController {
                 .toUriString();
 
        Image i = new Image(fileName, fileDownloadUri,
-                file.getContentType(), file.getSize());
+                file.getContentType(), file.getSize(), description);
 
         return create(i);
 
@@ -53,13 +54,13 @@ public class ImageController {
         return new Image(service.create(i), HttpStatus.CREATED);
     }
 
-    @PostMapping("/uploadMultipleFiles")
+/*    @PostMapping("/uploadMultipleFiles")
     public List<Image> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
         return Arrays.asList(files)
                 .stream()
                 .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
-    }
+    }*/
 
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
