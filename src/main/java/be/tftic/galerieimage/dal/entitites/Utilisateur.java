@@ -1,5 +1,6 @@
 package be.tftic.galerieimage.dal.entitites;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

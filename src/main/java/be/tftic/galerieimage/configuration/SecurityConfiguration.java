@@ -1,5 +1,6 @@
 package be.tftic.galerieimage.configuration;
 
+
 import be.tftic.galerieimage.dal.services.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -42,15 +43,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.csrf().disable()
-            .httpBasic()
-            .and()
-            .cors()
-            .and()
-            .authorizeRequests()
-            .antMatchers("/**").authenticated()
-            .and()
-            .sessionManagement()
-            .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .httpBasic()
+                .and()
+                .cors()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/**").permitAll()
+                .and()
+                .sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
 
