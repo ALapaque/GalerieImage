@@ -1,5 +1,6 @@
 package be.tftic.galerieimage.dal.entitites;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
@@ -26,9 +27,16 @@ public class Permission implements Serializable {
     @Column(nullable=false, length=250)
     private String description;
 
-    @OneToMany(mappedBy = "permission", cascade = CascadeType.REMOVE, orphanRemoval = true)
+/*    @OneToMany(mappedBy = "permission", cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonIgnoreProperties("permission")
-    private List<RoleHasPermission> permission = new ArrayList<RoleHasPermission>();
+    private List<RoleHasPermission> permission = new ArrayList<RoleHasPermission>();*/
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonBackReference(value = "permission")
+    @JoinTable(name = "RoleHasPermission", joinColumns = {
+    @JoinColumn(name = "id_permission")},inverseJoinColumns = @JoinColumn(name = "id_role"))
+    private List<Role> roles;
+
 
 
 }

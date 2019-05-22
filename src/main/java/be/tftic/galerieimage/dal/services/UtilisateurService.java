@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class UtilisateurService implements CrudService<Utilisateur, Integer>, UserDetailsService {
+public class UtilisateurService implements CrudService<Utilisateur, Integer> {
 
     @Autowired
     private UtilisateurRepository repo;
@@ -42,10 +42,4 @@ public class UtilisateurService implements CrudService<Utilisateur, Integer>, Us
         return false;
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Objects.requireNonNull(username);
-        Utilisateur u = repo.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found !"));
-        return u;
-    }
 }

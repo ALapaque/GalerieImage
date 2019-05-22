@@ -15,7 +15,7 @@ import java.util.List;
 @Table(name="utilisateur")
 @NamedQuery(name="Utilisateur.findAll", query="SELECT i FROM Utilisateur i")
 @Data
-public class Utilisateur implements UserDetails {
+public class Utilisateur {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -48,29 +48,4 @@ public class Utilisateur implements UserDetails {
     @JsonIgnoreProperties("role")
     private Role role;
 
-    @Override
-    @JsonIgnoreProperties("role")
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(role);
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
