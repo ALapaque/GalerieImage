@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Enumerated(EnumType.STRING)
     @NaturalId

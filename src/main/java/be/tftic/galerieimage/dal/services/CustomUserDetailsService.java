@@ -38,4 +38,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return UserPrincipal.create(user);
     }
+
+    public UserDetails getAll(){
+        return (UserDetails) userRepository.findAll();
+    }
 }
