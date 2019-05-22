@@ -15,13 +15,13 @@ public class ImageHasCategory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_image")
     @JsonIgnoreProperties("category")
     private Image image;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category")
     @JsonIgnoreProperties(ignoreUnknown = true,
             value = {"image", "motscle"})

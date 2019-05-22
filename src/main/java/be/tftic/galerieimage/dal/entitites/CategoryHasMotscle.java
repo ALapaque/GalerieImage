@@ -14,13 +14,13 @@ public class CategoryHasMotscle implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_motscle")
     @JsonIgnoreProperties("category")
     private Motscle motscle;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_category")
     @JsonIgnoreProperties("motscle")
     private Category category;

@@ -15,14 +15,14 @@ public class ImageHasMotscle implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_motscle")
     @JsonIgnoreProperties(ignoreUnknown = true,
             value = {"image", "category"})
     private Motscle motscle;
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_image")
     @JsonIgnoreProperties("motscle")
     private Image image;

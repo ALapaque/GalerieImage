@@ -59,7 +59,7 @@ public class Image implements  Serializable{
 			value = {"image", "category"})
 	private List<ImageHasMotscle> motscle = new ArrayList<ImageHasMotscle>();
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "id_utilisateur")
 	@JsonIgnoreProperties("utilisateur")
 	private Utilisateur utilisateur;

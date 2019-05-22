@@ -43,9 +43,19 @@ public class Utilisateur {
     @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Image> utilisateur = new ArrayList<Image>();
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_role")
     @JsonIgnoreProperties("role")
     private Role role;
 
+    public Utilisateur() {
+    }
+
+    public Utilisateur(String nom, String prenom, String email, String username, String password) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
 }
