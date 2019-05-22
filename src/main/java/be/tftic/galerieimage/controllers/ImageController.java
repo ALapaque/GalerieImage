@@ -33,7 +33,6 @@ public class ImageController {
 
     @PostMapping("/uploadFile")
     public Image uploadFile(@RequestParam("file") MultipartFile file, @RequestParam String description) {
-
         String fileName = service.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
