@@ -45,7 +45,6 @@ public class ImageController {
                 file.getContentType(), file.getSize(), description);
 
         return create(i);
-
     }
 
     //Inscription de l'image en DB
@@ -91,7 +90,7 @@ public class ImageController {
         return new ResponseEntity<List<Image>>((List<Image>) service.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/image/{id}")
     public ResponseEntity<Optional<Image>> getById(@PathVariable("id") int id){
 
         return new ResponseEntity<Optional<Image>>(service.getById(id), HttpStatus.OK);
