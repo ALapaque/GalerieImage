@@ -1,42 +1,43 @@
 package be.tftic.galerieimage.dal.entitites;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jdk.jshell.execution.Util;
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-
+import org.hibernate.annotations.NaturalId;
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+
 
 @Entity
-@Table(name="role")
-@NamedQuery(name="role.findAll", query="SELECT c FROM Role c")
-@Data
-public class Role implements Serializable, GrantedAuthority {
-    private static final long serialVersionUID = 1L;
-
+@Table(name = "roles")
+public class Role {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(unique=true, nullable=false, name = "id_role")
-    private int id_role;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(nullable=false, length=250)
-    private String nom;
+    @Enumerated(EnumType.STRING)
+    @NaturalId
+    @Column(length = 60)
+    private RoleName name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JsonIgnoreProperties("utilisateur")
-    private List<Utilisateur> role = new ArrayList<Utilisateur>();
+    public Role() {
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.REMOVE, orphanRemoval = true)
-    @JsonIgnoreProperties("role")
-    private List<RoleHasPermission> permission = new ArrayList<RoleHasPermission>();
-
-
-    @Override
-    public String getAuthority() {
-        return nom;
     }
+
+    public Role(RoleName name) {
+        this.name = name;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public RoleName getName() {
+        return name;
+    }
+
+    public void setName(RoleName name) {
+        this.name = name;
+    }
+
 }
