@@ -93,4 +93,10 @@ public class ImageController {
         return new ResponseEntity<Optional<Image>>(service.getById(id), HttpStatus.OK);
     }
 
+    @DeleteMapping("/image/{id}")
+    public ResponseEntity<Boolean> deleteById(@PathVariable("id") long id){
+
+        return new ResponseEntity<Boolean>(service.deleteByID(id), HttpStatus.OK);
+    }
+
 }

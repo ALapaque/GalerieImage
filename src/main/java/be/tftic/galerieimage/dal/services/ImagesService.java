@@ -98,7 +98,10 @@ public class ImagesService implements CrudService<Image, Long> {
 
     @Override
     public boolean deleteByID(Long id) {
-        return false;
+        repo.deleteById(id);
+
+        //Retourne true si le delete a été fait
+        return !repo.existsById(id);
     }
 
 }
