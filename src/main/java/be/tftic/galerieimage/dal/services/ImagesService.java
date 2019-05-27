@@ -92,8 +92,10 @@ public class ImagesService implements CrudService<Image, Long> {
     }
 
     @Override
-    public Image update(Image entity, Long aLong) throws Exception {
-        return null;
+    public Image update(Image entity, Long id) throws Exception {
+        Image i = getById(id).orElseThrow(() -> new Exception("Image's ID not found"));
+        i.setDescription(entity.getDescription());
+        return repo.save(i);
     }
 
     @Override

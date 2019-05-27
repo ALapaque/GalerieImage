@@ -2,6 +2,7 @@ package be.tftic.galerieimage.controllers;
 
 import be.tftic.galerieimage.dal.entitites.Image;
 import be.tftic.galerieimage.dal.services.ImagesService;
+import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -97,6 +99,13 @@ public class ImageController {
     public ResponseEntity<Boolean> deleteById(@PathVariable("id") long id){
 
         return new ResponseEntity<Boolean>(service.deleteByID(id), HttpStatus.OK);
+    }
+
+    @PutMapping("image/{id}")
+    public ResponseEntity<Image> update(@Valid @RequestBody Image i, @PathVariable("id") long id) throws Exception {
+
+        return new ResponseEntity<Image>(service.update(i, id), HttpStatus.OK);
+
     }
 
 }

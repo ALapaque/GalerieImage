@@ -25,7 +25,7 @@ public class RoleService implements CrudService<Role, Long> {
 
     @Override
     public Role create(Role entity) {
-        return null;
+        return repo.save(entity);
     }
 
     @Override
@@ -35,7 +35,10 @@ public class RoleService implements CrudService<Role, Long> {
 
     @Override
     public boolean deleteByID(Long id) {
-        return false;
+        repo.deleteById(id);
+
+        //return true s'il ne trouve pas l'id
+        return !repo.existsById(id);
     }
 
 }

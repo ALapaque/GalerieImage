@@ -35,7 +35,10 @@ public class MotscleService implements CrudService<Motscle, Long> {
 
     @Override
     public boolean deleteByID(Long id) {
-        return false;
+        repo.deleteById(id);
+
+        //return true s'il ne trouve pas l'ID
+        return !repo.existsById(id);
     }
 
 }
